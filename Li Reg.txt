@@ -1,0 +1,16 @@
+x <- mtcars$cyl
+y <- mtcars$hp
+relation <- lm(y~x)
+relation
+summary(relation)
+a <- data.frame(y = 140)
+result <- predict(relation,a)
+print(result)
+# Give the chart file a name.
+png(file = "linearregression.png")
+# Plot the chart.
+plot(y,x,col = "red",main = "No. of cylinders & Horse Power",
+ abline(lm(x~y)),cex = 1.3,pch = 16,xlab = "No. of cylinders",ylab = 
+"Horse Power")
+# Save the file.
+dev.off()

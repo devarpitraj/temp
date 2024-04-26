@@ -1,0 +1,64 @@
+A <- c(20, 13, 43, 19,25)
+#Simple Bar Chart
+barplot(A, xlab = "X-axis", ylab = "Y-axis", main = "Bar Chart")
+
+#Horizontal Bar Chart
+barplot(A, horiz = TRUE, xlab = "X-axis", ylab = "Y-axis", main = "Horizontal Bar Chart")
+B <- c("Jan", "Feb", "Mar", "Apr", "May")
+
+#Text and color Bar Chart
+text(
+x = barplot(A, names.arg = B, col = "magenta", ylim = c(0, max(A) * 2), xlab = "X-axis", ylab = "Y-axis", 
+main = "Text and Color Bar Chart"),
+y = A + 1, labels = A, pos = 3, cex = 1.2, col = "black"
+)
+
+#Grouped Bar Chart
+colors <- c("orange", "red", "brown")
+regions <- c("East","West", "North")
+Values <- matrix(c(2, 9, 3, 11, 9, 4, 8, 7, 3, 12, 5, 2, 8, 10, 11),
+ nrow = 3, ncol = 5, byrow = TRUE)
+barplot(Values, main = "Total Revenue", names.arg = B,
+ xlab = "Month", ylab = "Revenue",
+ col = colors, beside = TRUE)
+legend("topleft", regions, cex = 0.8, fill = colors)
+
+#Stacked Bar Chart
+barplot(Values, main = "Total Revenue", names.arg = B,
+ xlab = "Month", ylab = "Revenue",
+ col = colors)
+legend("topleft", regions, cex = 0.8, fill = colors)
+
+#Simple Pie Chart
+pie(A,B)
+#Colored Pie Chart
+pie(A, B, main = "Month Pie Chart", col = rainbow(length(A)))
+#Percentage Pie Chart
+piepercent <- round(100 * A / sum(A), 1)
+pie(A, labels = piepercent, main = "Month Pie Chart", col = rainbow(length(A))) 
+ 
+legend("topleft", B, cex = 0.8, fill = rainbow(length((A))))
+
+#Box Plot
+# Give the chart file a name.
+png(file = "boxplot.png")
+# Plot the chart.
+boxplot(mpg ~ cyl, data = mtcars, xlab = "Number of Cylinders",
+ ylab = "Miles Per Gallon", main = "Mileage Data")
+# Save the file.
+dev.off()
+
+# Give the chart file a name.
+png(file = "boxplot_with_notch.png")
+# Plot the chart.
+boxplot(mpg ~ cyl, data = mtcars, 
+ xlab = "Number of Cylinders",
+ ylab = "Miles Per Gallon", 
+ main = "Mileage Data",
+ notch = TRUE, 
+ varwidth = TRUE, 
+ col = c("green","yellow","purple"),
+ names = c("High","Medium","Low")
+)
+# Save the file.
+dev.off()
